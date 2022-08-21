@@ -9,25 +9,38 @@ const router = express.Router();
 router.post(
   "/api/anime",
   requireAuth,
-  [
-    body("title").not().isEmpty().withMessage("Title must not be empty"),
-    body("price")
-      .isFloat({ gt: 0 })
-      .withMessage("Price must be greater than 0"),
-  ],
+  [body("malId").not().isEmpty().withMessage("Mal ID must not be empty")],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { title, price } = req.body;
+    const {
+      titles,
+      type,
+      malId,
+      images,
+      episodes,
+      duration,
+      rating,
+      score,
+      synopsis,
+      genres,
+    } = req.body;
 
     const anime = Anime.build({
-      title,
-      price: Number(price),
-      userId: req.currentUser!.id,
+      titles,
+      type,
+      malId,
+      images,
+      episodes,
+      duration,
+      rating,
+      score,
+      synopsis,
+      genres,
     });
 
     await anime.save();
 
-    res.status(201).send(anime);
+    // res.status(201).send(anime);
   }
 );
 

@@ -2,9 +2,23 @@ import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface AnimeAttrs {
-  title: string;
-  price: number;
-  userId: string;
+  titles: [
+    {
+      type: string;
+      title: string;
+    }
+  ];
+  type: string;
+  malId: number;
+  images: string;
+  episodes: number;
+  duration: string;
+  rating: string;
+  score: number;
+  synopsis: string;
+  genres: {
+    name: string;
+  }[];
 }
 
 interface AnimeModel extends mongoose.Model<AnimeDoc> {
@@ -12,31 +26,44 @@ interface AnimeModel extends mongoose.Model<AnimeDoc> {
 }
 
 interface AnimeDoc extends mongoose.Document {
-  title: string;
-  price: number;
-  userId: string;
-  version: number;
-  orderId?: string;
+  titles: {
+    type: string;
+    title: string;
+  }[];
+  type: string;
+  malId: number;
+  images: string;
+  episodes: number;
+  duration: string;
+  rating: string;
+  score: number;
+  synopsis: string;
+  genres: {
+    name: string;
+  }[];
 }
 
 const AnimeSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    userId: {
-      type: String,
-      required: true,
-    },
-    orderId: {
-      type: String,
-      default: "undefined",
-    },
+    titles: [
+      {
+        type: String,
+        title: String,
+      },
+    ],
+    type: String,
+    malId: Number,
+    images: String,
+    episodes: Number,
+    duration: String,
+    rating: String,
+    score: Number,
+    synopsis: String,
+    genres: [
+      {
+        name: String,
+      },
+    ],
   },
   {
     toJSON: {
