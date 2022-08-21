@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anime-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: anime-mongo
+  template:
+    metadata:
+      labels:
+        app: anime-mongo
+    spec:
+      containers:
+        - name: anime-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: anime-mongo-srv
+spec:
+  selector:
+    app: anime-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
