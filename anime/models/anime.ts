@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
-import { CommentsDoc } from "./comments";
+import { CommentsDoc } from "./comment";
 
 interface AnimeAttrs {
   titles: [
@@ -54,14 +54,30 @@ const AnimeSchema = new mongoose.Schema(
         title: String,
       },
     ],
-    type: String,
-    malId: Number,
-    images: String,
-    episodes: Number,
-    duration: String,
-    rating: String,
-    score: Number,
-    synopsis: String,
+    type: {
+      type: String,
+    },
+    malId: {
+      type: Number,
+    },
+    images: {
+      type: String,
+    },
+    episodes: {
+      type: Number,
+    },
+    duration: {
+      type: String,
+    },
+    rating: {
+      type: String,
+    },
+    score: {
+      type: Number,
+    },
+    synopsis: {
+      type: String,
+    },
     genres: [
       {
         name: String,
