@@ -20,7 +20,7 @@ interface AnimeAttrs {
   genres: {
     name: string;
   }[];
-  comments: CommentsDoc[];
+  comments?: CommentsDoc[];
 }
 
 interface AnimeModel extends mongoose.Model<AnimeDoc> {
@@ -43,7 +43,7 @@ interface AnimeDoc extends mongoose.Document {
   genres: {
     name: string;
   }[];
-  comments: CommentsDoc[];
+  comments?: CommentsDoc[];
 }
 
 const AnimeSchema = new mongoose.Schema(
@@ -65,6 +65,12 @@ const AnimeSchema = new mongoose.Schema(
     genres: [
       {
         name: String,
+      },
+    ],
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comments",
       },
     ],
   },

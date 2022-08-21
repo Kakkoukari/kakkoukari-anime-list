@@ -40,7 +40,7 @@ router.post(
 
     await anime.save();
 
-    // res.status(201).send(anime);
+    res.status(201).send(anime);
   }
 );
 
