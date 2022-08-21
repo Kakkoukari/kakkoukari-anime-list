@@ -24,3 +24,10 @@ spec:
                 name: anime-srv
                 port:
                   number: 3000
+          - path: /api/profile/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: user-srv
+                port:
+                  number: 3000
