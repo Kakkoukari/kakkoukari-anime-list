@@ -2,7 +2,6 @@ import express, { Request, Response } from "express";
 import { requireAuth, validateRequest } from "@devion/common";
 import { body } from "express-validator";
 import { Anime } from "../models/animes";
-import { AnimeCreatedPublisher } from "../events/publishers/anime-created-publisher";
 import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
@@ -27,14 +26,6 @@ router.post(
     });
 
     await anime.save();
-
-    new AnimeCreatedPublisher(natsWrapper.client).publish({
-      id: anime.id,
-      title: anime.title,
-      price: anime.price,
-      userId: anime.userId,
-      version: anime.version,
-    });
 
     res.status(201).send(anime);
   }
