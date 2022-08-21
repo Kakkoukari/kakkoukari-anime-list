@@ -1,6 +1,6 @@
 import { Subjects } from "./subjects";
 
-export interface AnimeListUpdatedEvent {
+interface AnimeListUpdatedEvent {
   subject: Subjects.AnimeListUpdated;
   data: {
     titles: {
@@ -20,3 +20,5 @@ export interface AnimeListUpdatedEvent {
     }[];
   };
 }
+
+export {AnimeListUpdatedEvent};
