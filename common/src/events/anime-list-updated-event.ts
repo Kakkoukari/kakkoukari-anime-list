@@ -9,7 +9,7 @@ interface AnimeListUpdatedEvent {
         type: string;
     }[];
     type: string;
-    malId: string;
+    malId: number;
     images: string;
     episodes: number;
     duration: string;
