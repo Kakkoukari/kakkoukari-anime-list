@@ -31,12 +31,11 @@ router.post(
 
       let size = response.data.data.length - 1;
 
-      while (size >= 0 && flag) {
+      while (size >= 0 && page >= 1) {
         const animeDetails = response.data.data[size--];
         const anime = await Anime.findOne({ malId: animeDetails.mal_id });
 
         if (anime) {
-          flag = false;
         } else {
           const newAnime = new Anime({
             titles: animeDetails.titles,
