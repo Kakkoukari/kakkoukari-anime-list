@@ -19,3 +19,12 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: kakkoukari/anime
+      context: anime
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+            
