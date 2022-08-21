@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
+import { CommentsDoc } from "./comments";
 
 interface AnimeAttrs {
   titles: [
@@ -19,6 +20,7 @@ interface AnimeAttrs {
   genres: {
     name: string;
   }[];
+  comments: CommentsDoc[];
 }
 
 interface AnimeModel extends mongoose.Model<AnimeDoc> {
@@ -41,6 +43,7 @@ interface AnimeDoc extends mongoose.Document {
   genres: {
     name: string;
   }[];
+  comments: CommentsDoc[];
 }
 
 const AnimeSchema = new mongoose.Schema(
