@@ -1,12 +1,12 @@
 import express, { Request, Response } from "express";
-import { Anime } from "../models/animes";
+import { Anime } from "../../models/anime";
 import { NotFoundError } from "@devion/common";
 
 const router = express.Router();
 
 router.get("/api/anime/:id", async (req: Request, res: Response) => {
   const anime = await Anime.findOne({
-    malId: req.params.id
+    malId: req.params.id,
   });
 
   if (!anime) {

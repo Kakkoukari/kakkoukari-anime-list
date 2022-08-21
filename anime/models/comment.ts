@@ -6,6 +6,8 @@ interface CommentsAttrs {
   animeId: string;
   userId: string;
   username: string;
+  malId: string;
+  commentId: string;
 }
 
 interface CommentsModel extends mongoose.Model<CommentsDoc> {
@@ -17,6 +19,8 @@ export interface CommentsDoc extends mongoose.Document {
   animeId: string;
   userId: string;
   username: string;
+  malId: string;
+  commentId: string;
 }
 
 const CommentsSchema = new mongoose.Schema(
@@ -37,6 +41,14 @@ const CommentsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    malId: {
+      type: String,
+      required: true,
+    },
+    commentId: {
+      type: String,
+      required: true,
+    },
   },
   {
     toJSON: {
@@ -50,15 +62,15 @@ const CommentsSchema = new mongoose.Schema(
 );
 
 CommentsSchema.statics.build = (attrs: CommentsAttrs) => {
-  return new Comments(attrs);
+  return new Comment(attrs);
 };
 
 CommentsSchema.set("versionKey", "version");
 CommentsSchema.plugin(updateIfCurrentPlugin);
 
-const Comments = mongoose.model<CommentsDoc, CommentsModel>(
+const Comment = mongoose.model<CommentsDoc, CommentsModel>(
   "Comments",
   CommentsSchema
 );
 
-export { Comments };
+export { Comment };

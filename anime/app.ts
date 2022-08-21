@@ -3,10 +3,9 @@ import "express-async-errors";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError, currentUser } from "@devion/common";
-import { createAnimeRouter } from "./routes/new";
-import { getAnimeRouter } from "./routes/show";
-import { showAllAnimeRouter } from "./routes/showall";
-import { updateAnimeRouter } from "./routes/update";
+import { createAnimeRouter } from "./routes/anime/new";
+import { getAnimeRouter } from "./routes/anime/show";
+import { showAllAnimeRouter } from "./routes/anime/showall";
 
 const app = express();
 app.set("trust proxy", true);
@@ -21,7 +20,6 @@ app.use(currentUser);
 app.use(getAnimeRouter);
 app.use(showAllAnimeRouter);
 app.use(createAnimeRouter);
-app.use(updateAnimeRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();
