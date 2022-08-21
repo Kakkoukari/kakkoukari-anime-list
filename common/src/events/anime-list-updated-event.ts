@@ -15,6 +15,11 @@ interface AnimeListUpdatedEvent {
     rating: string;
     score: number;
     synopsis: string;
+    comments: {
+        username: string,
+        content: string,
+        userId: string
+    }[];
     genres: {
         name: string
     }[];
