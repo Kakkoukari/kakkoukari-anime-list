@@ -3,7 +3,8 @@ import { Subjects } from "./subjects";
 interface AnimeListUpdatedEvent {
   subject: Subjects.AnimeListUpdated;
   data: {
-    titles: {
+    animelist:
+    {titles: {
         title: string;
         type: string;
     }[];
@@ -22,7 +23,7 @@ interface AnimeListUpdatedEvent {
     }[];
     genres: {
         name: string
-    }[];
+    }[];}[];
   };
 }
 
