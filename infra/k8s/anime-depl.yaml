@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anime-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: anime
+  template:
+    metadata:
+      labels:
+        app: anime
+    spec:
+      containers:
+        - name: anime
+          image: kakkoukari/anime
+          env:
+            - name: MONGO_URI
+              value: "mongodb://anime-mongo-srv:27017/anime"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: anime-srv
+spec:
+  selector:
+    app: anime
+  ports:
+    - name: anime
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
