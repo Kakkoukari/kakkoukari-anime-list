@@ -3,12 +3,13 @@ import { Subjects } from "./subjects";
 interface AnimeListUpdatedEvent {
   subject: Subjects.AnimeListUpdated;
   data: {
-    titles: {
+    animelist:
+    {titles: {
         title: string;
         type: string;
     }[];
     type: string;
-    malId: string;
+    malId: number;
     images: string;
     episodes: number;
     duration: string;
@@ -22,7 +23,7 @@ interface AnimeListUpdatedEvent {
     }[];
     genres: {
         name: string
-    }[];
+    }[];}[];
   };
 }
 
