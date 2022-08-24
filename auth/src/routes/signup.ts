@@ -3,6 +3,8 @@ import { body } from "express-validator";
 import jwt from "jsonwebtoken";
 import { validateRequest, BadRequestError } from "@devion/common";
 import { User } from "../models/user";
+import { UserCreatedPublisher } from "../events/publisher/user-created-publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -41,6 +43,12 @@ router.post(
     req.session = {
       jwt: userJwt,
     };
+    new UserCreatedPublisher(natsWrapper.client).publish({
+      email: user.email,
+      username: user.username,
+      userId: user.id
+    });
+    console.log("error");
     res.status(201).send(user);
   }
 );

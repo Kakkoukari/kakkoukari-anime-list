@@ -3,12 +3,11 @@ import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 import { CommentsDoc } from "./comment";
 
 interface AnimeAttrs {
-  titles: [
+  titles: 
     {
       type: string;
       title: string;
-    }
-  ];
+    }[];
   type: string;
   malId: number;
   images: string;
