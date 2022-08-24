@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { app } from "./app";
+import app from "./app";
 import { natsWrapper } from "./nats-wrapper";
 import { CommentCreatedListener } from "./events/listeners/comment-created-listener";
 

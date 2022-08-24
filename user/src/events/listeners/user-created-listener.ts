@@ -11,6 +11,7 @@ export class UserCreatedListener extends Listener<UserCreatedEvent> {
       email: data.email,
     });
     await user.save();
+    console.log("User Created Listened in User service!")
     msg.ack();
   }
 }
