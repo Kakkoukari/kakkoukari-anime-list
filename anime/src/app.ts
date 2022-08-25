@@ -24,7 +24,6 @@ app.use(createAnimeRouter);
 app.all("*", async (req, res) => {
   throw new NotFoundError();
 });
-
 app.use(errorHandler);
 
-export default  app ;
+export default app;
