@@ -5,7 +5,7 @@ import {Anime} from "../models/Anime";
 import {NotFoundError} from "@devion/common";
 const router = express.Router();
 
-router.put("/api/profile/update",requireAuth, currentUser, async (req:Request, res:Response) => {
+router.put("/api/profile/update", currentUser, requireAuth,async (req:Request, res:Response) => {
     const user = await User.findOne({email: req.currentUser?.email});
     if(!user)
         {
