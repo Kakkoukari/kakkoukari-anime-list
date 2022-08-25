@@ -17,7 +17,7 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
-          - path: /api/anime/?(.*)
+          - path: /api/animes/?(.*)
             pathType: Prefix
             backend:
               service:

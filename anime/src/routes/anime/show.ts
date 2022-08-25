@@ -4,7 +4,7 @@ import { NotFoundError } from "@devion/common";
 
 const router = express.Router();
 
-router.get("/api/anime/:id", async (req: Request, res: Response) => {
+router.get("/api/animes/:id", async (req: Request, res: Response) => {
   const anime = await Anime.findOne({
     malId: req.params.id,
   });
