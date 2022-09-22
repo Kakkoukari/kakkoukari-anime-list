@@ -5,9 +5,9 @@ import { AnimeListUpdatedListener } from "../events/listeners/anime-list-updated
 const router = express.Router();
 
 /*Returns all the users*/
-router.get("/api/profile/animes", currentUser, async (req, res) => {
+router.get("/api/profile/animes", async (req, res) => {
   const animes = await Anime.find({});
   res.status(200).send(animes);
 });
 
-export { router as getAllUserAnimeRouter};
+export { router as getAllUserAnimeRouter };
