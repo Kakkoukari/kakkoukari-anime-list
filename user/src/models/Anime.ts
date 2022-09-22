@@ -3,26 +3,26 @@ import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 import { createStringLiteralFromNode } from "typescript";
 
 interface AnimeAttrs {
-  titles: 
+  titles?: 
     {
-      type: string;
-      title: string;
+      type?: string;
+      title?: string;
     }[];
-  type: string;
-  malId: number;
-  images: string;
-  episodes: number;
-  duration: string;
-  rating: string;
-  score: number;
-  synopsis: string;
-  genres: {
-    name: string;
+  type?: string;
+  malId?: number;
+  images?: string;
+  episodes?: number;
+  duration?: string;
+  rating?: string;
+  score?: number;
+  synopsis?: string;
+  genres?: {
+    name?: string;
   }[];
   comments?: {
-    username: string;
-    content: string;
-    userId: string;
+    username?: string;
+    content?: string;
+    userId?: string;
   }[]
 }
 
@@ -31,25 +31,25 @@ interface AnimeModel extends mongoose.Model<AnimeDoc> {
 }
 
 export interface AnimeDoc extends mongoose.Document {
-  titles: {
-    type: string;
-    title: string;
+  titles?: {
+    type?: string;
+    title?: string;
   };
-  type: string;
-  malId: number;
-  images: string;
-  episodes: number;
-  duration: string;
-  rating: string;
-  score: number;
-  synopsis: string;
-  genres: {
-    name: string;
+  type?: string;
+  malId?: number;
+  images?: string;
+  episodes?: number;
+  duration?: string;
+  rating?: string;
+  score?: number;
+  synopsis?: string;
+  genres?: {
+    name?: string;
   }[];
   comments?: {
-    username: string;
-    content: string;
-    userId: string;
+    username?: string;
+    content?: string;
+    userId?: string;
   }[]
 }
 
@@ -59,11 +59,11 @@ const AnimeSchema = new mongoose.Schema(
       {
         type: {
             type: String,
-            required: true
+            required: false
         },
         title: {
             type: String,
-            required: true
+            required: false
         },
       },
     ],
@@ -108,7 +108,7 @@ const AnimeSchema = new mongoose.Schema(
         },
       },
     ],
-    required: true    
+    required: false    
     },
     comments:{
         type: [
@@ -119,11 +119,11 @@ const AnimeSchema = new mongoose.Schema(
             },
             content: {
                 type: String,
-                required: true
+                required: false
             },
             userId: {
                 type: String,
-                required: true
+                required: false
             }
         }
         ],
