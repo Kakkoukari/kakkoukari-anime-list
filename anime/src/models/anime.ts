@@ -3,20 +3,19 @@ import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 import { CommentsDoc } from "./comment";
 
 interface AnimeAttrs {
-  titles: 
-    {
-      type: string;
-      title: string;
-    }[];
-  type: string;
+  titles?: {
+    type: string;
+    title: string;
+  }[];
+  type?: string;
   malId: number;
-  images: string;
-  episodes: number;
-  duration: string;
-  rating: string;
-  score: number;
-  synopsis: string;
-  genres: {
+  images?: string;
+  episodes?: number;
+  duration?: string;
+  rating?: string;
+  score?: number;
+  synopsis?: string;
+  genres?: {
     name: string;
   }[];
   comments?: CommentsDoc[];
@@ -27,19 +26,19 @@ interface AnimeModel extends mongoose.Model<AnimeDoc> {
 }
 
 interface AnimeDoc extends mongoose.Document {
-  titles: {
+  titles?: {
     type: string;
     title: string;
   }[];
-  type: string;
+  type?: string;
   malId: number;
-  images: string;
-  episodes: number;
-  duration: string;
-  rating: string;
-  score: number;
-  synopsis: string;
-  genres: {
+  images?: string;
+  episodes?: number;
+  duration?: string;
+  rating?: string;
+  score?: number;
+  synopsis?: string;
+  genres?: {
     name: string;
   }[];
   comments?: CommentsDoc[];
@@ -49,39 +48,60 @@ const AnimeSchema = new mongoose.Schema(
   {
     titles: [
       {
-        type: String,
-        title: String,
+        type: {
+          type: String,
+          required: false,
+        },
+        title: {
+          type: String,
+          required: false,
+        },
+        required: false,
       },
     ],
     type: {
       type: String,
+      required: false,
     },
     malId: {
       type: Number,
+      required: true,
     },
     images: {
       type: String,
+      require: false,
     },
     episodes: {
       type: Number,
+      required: false,
     },
     duration: {
       type: String,
+      required: false,
     },
     rating: {
       type: String,
+      required: false,
     },
     score: {
       type: Number,
+      required: false,
     },
     synopsis: {
       type: String,
+      required: false,
     },
-    genres: [
-      {
-        name: String,
-      },
-    ],
+    genres: {
+      type: [
+        {
+          name: {
+            type: String,
+            required: false,
+          },
+        },
+      ],
+      required: false,
+    },
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,

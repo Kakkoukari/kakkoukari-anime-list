@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get("/api/animes", async (req: Request, res: Response) => {
   const anime = await Anime.find();
-  console.log("anime");
   res.send(anime);
 });
 

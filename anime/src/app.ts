@@ -18,10 +18,11 @@ app.use(
   })
 );
 app.use(currentUser);
-app.use(getAnimeRouter);
-app.use(showAllAnimeRouter);
+
 app.use(createAnimeRouter);
+app.use(getAnimeRouter);
 app.use(createAnimePageRouter);
+app.use(showAllAnimeRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();
