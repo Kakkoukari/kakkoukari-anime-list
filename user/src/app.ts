@@ -6,6 +6,7 @@ import { getAllUsersRouter } from "./routes/show-all";
 import { getAuthenticatedUserRouter } from "./routes/current-user";
 import { updateAnimeListRouter } from "./routes/update-info";
 import { errorHandler, NotFoundError } from "@devion/common";
+import { getAllUserAnimeRouter } from "./routes/get-anime";
 const app = express();
 app.set("trust proxy", true);
 app.use(json());
@@ -18,6 +19,7 @@ app.use(
 /*Todo import routes*/
 app.use(getAllUsersRouter);
 app.use(getAuthenticatedUserRouter);
+app.use(getAllUserAnimeRouter);
 app.use(updateAnimeListRouter);
 app.all("*", async (req, res) => {
   throw new NotFoundError();
