@@ -43,33 +43,33 @@ router.get("/api/animes/new/:id", async (req: Request, res: Response) => {
       }
     }
 
-    if (count > 0) {
-      new AnimeListUpdatedPublisher(natsWrapper.client).publish({
-        animelist: animesAdded.map((anime) => {
-          return {
-            titles: anime.titles,
-            type: anime.type,
-            malId: anime.malId,
-            images: anime.images,
-            episodes: anime.episodes,
-            duration: anime.duration,
-            rating: anime.rating,
-            score: anime.score,
-            synopsis: anime.synopsis,
-            genres: anime.genres,
-            comments:
-              anime.comments?.map((comment) => {
-                return {
-                  username: comment.username,
-                  content: comment.content,
-                  userId: comment.userId,
-                };
-              }) || [],
-          };
-        }),
-      });
-      res.status(201).send({ animesAdded: count });
-    }
+    // if (count > 0) {
+    //   new AnimeListUpdatedPublisher(natsWrapper.client).publish({
+    //     animelist: animesAdded.map((anime) => {
+    //       return {
+    //         titles: anime.titles,
+    //         type: anime.type,
+    //         malId: anime.malId,
+    //         images: anime.images,
+    //         episodes: anime.episodes,
+    //         duration: anime.duration,
+    //         rating: anime.rating,
+    //         score: anime.score,
+    //         synopsis: anime.synopsis,
+    //         genres: anime.genres,
+    //         comments:
+    //           anime.comments?.map((comment) => {
+    //             return {
+    //               username: comment.username,
+    //               content: comment.content,
+    //               userId: comment.userId,
+    //             };
+    //           }) || [],
+    //       };
+    //     }),
+    //   });
+    //   res.status(201).send({ animesAdded: count });
+    // }
     res.status(200).send({ animesAdded: count });
   } catch (error) {
     console.log(error);
