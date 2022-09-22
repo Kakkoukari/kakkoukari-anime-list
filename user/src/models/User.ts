@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {AnimeDoc} from "./Anime";
+import { AnimeDoc } from "./Anime";
 // An interface that describes the properties
 // that are requried to create a new User
 interface UserAttrs {
@@ -11,8 +11,8 @@ interface UserAttrs {
     animeId: string;
     userRating: number;
     episodesWatched: number;
-    status: string;    
-}[];
+    status: string;
+  }[];
 }
 
 // An interface that describes the properties
@@ -27,53 +27,59 @@ interface UserDoc extends mongoose.Document {
   email: string;
   profilepic?: string;
   animelist?: {
-    anime: AnimeDoc;
-    animeId: string;
+    anime?: AnimeDoc;
+    animeId?: string;
     userRating?: number;
-    episodesWatched: number;
-    status: string;    
-}[];
-  username:string;
+    episodesWatched?: number;
+    status?: string;
+  }[];
+  username: string;
 }
 
 const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      required: true,
+      required: false,
     },
     username: {
       type: String,
-      required: true,
+      required: false,
     },
     profilepic: {
-        type: String,
-        required: false,
+      type: String,
+      required: false,
+      default: null,
     },
     animelist: [
-        {
-            anime:{
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Anime",
-                required: false,},
-            animeId: {
-                type: String,
-                required: true,
-            },
-            userRating: {
-                type: Number,
-                required: false,
-            },
-            episodesWatched: {
-                type: Number,
-                required: true,
-            }, 
-            status: {
-                type: String,
-                required: true,
-            }
-        }
-    ]
+      {
+        anime: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Anime",
+          required: false,
+        },
+        animeId: {
+          type: String,
+          required: false,
+          default: null,
+        },
+        userRating: {
+          type: Number,
+          default: null,
+          required: false,
+        },
+        episodesWatched: {
+          type: Number,
+          default: null,
+          required: false,
+        },
+        status: {
+          type: String,
+          default: null,
+          required: false,
+        },
+      },
+    ],
   },
   {
     toJSON: {
