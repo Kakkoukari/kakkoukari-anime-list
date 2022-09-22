@@ -4,6 +4,8 @@ import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError } from "@devion/common";
 const app = express();
+
+//Set app
 app.set("trust proxy", true);
 app.use(json());
 app.use(
