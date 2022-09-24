@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 interface CommentAttrs {
   content?: string;
   animeId?: string;
+  malId?: string;
   userId?: string;
 }
 
@@ -13,6 +14,7 @@ interface CommentModel extends mongoose.Model<CommentDoc> {
 export interface CommentDoc extends mongoose.Document {
   content?: string;
   animeId?: string;
+  malId?: string;
   userId?: string;
 }
 
@@ -27,6 +29,10 @@ const CommentSchema = new mongoose.Schema(
       required: false,
     },
     userId: {
+      type: String,
+      required: false,
+    },
+    malId: {
       type: String,
       required: false,
     },
