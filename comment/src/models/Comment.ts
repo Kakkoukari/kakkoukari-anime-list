@@ -4,6 +4,7 @@ interface CommentAttrs {
   content?: string;
   animeId?: string;
   malId?: string;
+  username?: string;
   userId?: string;
 }
 
@@ -16,6 +17,7 @@ export interface CommentDoc extends mongoose.Document {
   animeId?: string;
   malId?: string;
   userId?: string;
+  username?: string;
 }
 
 const CommentSchema = new mongoose.Schema(
@@ -33,6 +35,10 @@ const CommentSchema = new mongoose.Schema(
       required: false,
     },
     malId: {
+      type: String,
+      required: false,
+    },
+    username: {
       type: String,
       required: false,
     },
