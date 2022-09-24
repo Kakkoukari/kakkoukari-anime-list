@@ -6,6 +6,8 @@ import { errorHandler, NotFoundError } from "@devion/common";
 import { AddCommentRouter } from "./routes/add-comment";
 import { GetAllCommentRouter } from "./routes/show-all-comment";
 import { UpdateCommentRouter } from "./routes/update-comment";
+import { RemoveCommentRouter } from "./routes/remove-comment";
+
 const app = express();
 
 //Set app
@@ -24,6 +26,7 @@ app.use(
 app.use(AddCommentRouter);
 app.use(GetAllCommentRouter);
 app.use(UpdateCommentRouter);
+app.use(RemoveCommentRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();
