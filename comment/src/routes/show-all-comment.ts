@@ -1,6 +1,6 @@
 import express,{Request, Response} from "express";
 import { currentUser } from "@devion/common";
-import {Comment} from "../models/Comment.ts";
+import {Comment} from "../models/Comment";
 const router = express.Router();
 
 router.get("/api/comments/show", currentUser, async (req:Request, res:Response)=>{
