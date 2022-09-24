@@ -36,6 +36,7 @@ const start = async () => {
 
     new CommentCreatedListener(natsWrapper.client).listen();
     new CommentRemovedListener(natsWrapper.client).listen();
+
     await mongoose.connect(process.env.MONGO_URI, {});
     console.log("Connected to MongoDb");
   } catch (err) {
