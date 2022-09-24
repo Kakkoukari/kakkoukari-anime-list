@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import app from "./app";
 import { natsWrapper } from "./nats-wrapper";
 import { CommentCreatedListener } from "./events/listeners/comment-created-listener";
+import { CommentRemovedListener } from "./events/listeners/comment-removed-listener";
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -34,7 +35,7 @@ const start = async () => {
     process.on("SIGTERM", () => natsWrapper.client.close());
 
     new CommentCreatedListener(natsWrapper.client).listen();
-
+    new CommentRemovedListener(natsWrapper.client).listen();
     await mongoose.connect(process.env.MONGO_URI, {});
     console.log("Connected to MongoDb");
   } catch (err) {
