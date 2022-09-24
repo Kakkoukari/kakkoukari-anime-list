@@ -21,6 +21,7 @@ router.post(
     });
 
     await addedComment.save();
+    console.log(req.currentUser);
 
     new CommentCreatedPublisher(natsWrapper.client).publish({
       commentId: addedComment.id,
