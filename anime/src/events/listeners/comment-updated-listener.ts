@@ -8,10 +8,18 @@ export class CommentUpdatedListener extends Listener<CommentUpdatedEvent> {
   async onMessage(data: CommentUpdatedEvent["data"], msg: Message) {
     console.log("Comment created listener", data);
 
-    const comment = Comment.build({
-      content: data.content,
+    const comment = await Comment.findOne({
       commentId: data.commentId,
     });
+
+    if (!comment) {
+      throw new Error("Comment not found");
+    }
+
+    comment.set({
+      content: data.content,
+    });
+
     await comment.save();
 
     msg.ack();
