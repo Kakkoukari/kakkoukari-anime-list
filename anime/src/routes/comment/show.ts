@@ -3,7 +3,7 @@ import { Comment } from "../../models/comment";
 
 const router = express.Router();
 
-router.get("/api/animes/comment", async (req: Request, res: Response) => {
+router.post("/api/animes/comments", async (req: Request, res: Response) => {
   const comments = await Comment.find({
     animeId: req.body.animeId,
   });
@@ -11,4 +11,4 @@ router.get("/api/animes/comment", async (req: Request, res: Response) => {
   res.send(comments);
 });
 
-export { router as getAnimeRouter };
+export { router as getCommentRouter };

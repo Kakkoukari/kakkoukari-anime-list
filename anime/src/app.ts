@@ -7,7 +7,7 @@ import { createAnimeRouter } from "./routes/anime/new";
 import { getAnimeRouter } from "./routes/anime/show";
 import { showAllAnimeRouter } from "./routes/anime/showall";
 import { createAnimePageRouter } from "./routes/anime/new-page";
-
+import { getCommentRouter } from "./routes/comment/show";
 const app = express();
 app.set("trust proxy", true);
 app.use(json());
@@ -21,6 +21,7 @@ app.use(currentUser);
 
 app.use(createAnimeRouter);
 app.use(getAnimeRouter);
+app.use(getCommentRouter);
 app.use(createAnimePageRouter);
 app.use(showAllAnimeRouter);
 

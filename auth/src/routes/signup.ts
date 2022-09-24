@@ -35,6 +35,7 @@ router.post(
       {
         id: user.id,
         email: user.email,
+        username: user.username,
       },
       process.env.JWT_KEY!
     );
@@ -46,7 +47,7 @@ router.post(
     new UserCreatedPublisher(natsWrapper.client).publish({
       email: user.email,
       username: user.username,
-      userId: user.id
+      userId: user.id,
     });
     console.log("error");
     res.status(201).send(user);
