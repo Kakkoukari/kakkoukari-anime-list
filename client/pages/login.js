@@ -1,10 +1,5 @@
-import { useState, useEffect } from "react";
-import Router from "next/router";
-import Styles from "../styles/Signup.module.css";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { useState } from "react";
+import styles from "../styles/signup.module.scss";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -16,27 +11,46 @@ const Signup = () => {
   };
 
   return (
-    <div className="">
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+    <div id={`${styles.loginform}`}>
+      <h2 id={`${styles.headerTitle}`}>Login</h2>
+      <div>
+        <div className={`${styles.row}`}>
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="Enter your Email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+        </div>
+        <div className={`${styles.row}`}>
+          <label>Username</label>
+          <input
+            type="text"
+            placeholder="Enter your Username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+        </div>
+        <div className={`${styles.row}`}>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your Password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </div>
+        <div id={`${styles.button}`} className={`${styles.row}`}>
+          <button>Login</button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import Router from "next/router";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+import styles from "../styles/signup.module.scss";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -12,37 +11,47 @@ const Signup = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h1>Sign Up</h1>
-      <div className="form-group">
-        <label>Email Address</label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="form-control"
-        />
+    <div id={`${styles.loginform}`}>
+      <h2 id={`${styles.headerTitle}`}>Sign Up</h2>
+      <div>
+        <div className={`${styles.row}`}>
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="Enter your Email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+        </div>
+        <div className={`${styles.row}`}>
+          <label>Username</label>
+          <input
+            type="text"
+            placeholder="Enter your Username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+        </div>
+        <div className={`${styles.row}`}>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your Password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </div>
+        <div id={`${styles.button}`} className={`${styles.row}`}>
+          <button>Sign Up</button>
+        </div>
       </div>
-      <div className="form-group">
-        <label>Username</label>
-        <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          type="password"
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          className="form-control"
-        />
-      </div>
-      <button className="btn btn-primary dark">Sign Up</button>
-      <button className="btn btn-primary dark">Sign Up</button>
-    </form>
+    </div>
   );
 };
 
