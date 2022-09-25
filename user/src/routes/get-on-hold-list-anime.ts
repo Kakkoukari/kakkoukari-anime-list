@@ -17,4 +17,4 @@ router.get("/api/profile/animes/onhold", currentUser, async (req, res) => {
   res.status(200).send(onHoldList);
 });
 
-export { router as getAllAnimeListRouter };
+export { router as getOnHoldAnimeListRouter };
