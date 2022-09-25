@@ -1,13 +1,29 @@
 import { useState } from "react";
 import styles from "../styles/signup.module.scss";
+import { Router } from "next/router";
+import { useRequest } from "../hooks/use-request";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const { doRequest, errors } = useRequest({
+    url: "/api/users/signup",
+    method: "post",
+    body: {
+      email,
+      username,
+      password,
+    },
+    onSuccess: () => {
+      Router.push("/");
+    },
+  });
+
   const onSubmit = async (event) => {
     event.preventDefault();
+    doRequest();
   };
 
   return (
@@ -47,8 +63,9 @@ const Signup = () => {
             }}
           />
         </div>
+        {errors}
         <div id={`${styles.button}`} className={`${styles.row}`}>
-          <button>Sign Up</button>
+          <button onSubmit={onSubmit}>Sign Up</button>
         </div>
       </div>
     </div>
