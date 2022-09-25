@@ -16,3 +16,4 @@ export * from "./events/user-created-event";
 export * from "./events/anime-list-updated-event";
 export * from "./events/comment-removed-event";
 export * from "./events/comment-updated-event";
+export * from "./events/anime-status";
