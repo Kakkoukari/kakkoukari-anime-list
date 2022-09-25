@@ -5,10 +5,13 @@ const useRequest = ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
 
   const doRequest = async (props = {}) => {
-    
     try {
       setErrors(null);
-      const response = await axios[method](url, {...body, ...props}, {withCredentials:true});
+      const response = await axios[method](
+        url,
+        { ...body, ...props },
+        { withCredentials: true }
+      );
       if (onSuccess) {
         onSuccess(response.data);
       }
