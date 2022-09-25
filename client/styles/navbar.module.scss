@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  align-items: center;
+
+  background: #ffc600;
+  color: white;
+  font-family: Helvetica;
+  font-weight: 300;
+}
+.navbar__link {
+  transition: 1s;
+}
+.navbar__link:hover {
+  color: #5800ff;
+}
+.navbar__item {
+  padding: 16px 16px;
+  cursor: pointer;
+  vertical-align: middle;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.navbar__title {
+  margin-right: auto;
+  font-size: 2.5rem;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
