@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import { currentUser, NotFoundError } from "@devion/common";
+import { natsWrapper } from "../nats-wrapper";
 import { Comment } from "../models/Comment";
+import { CommentUpdatedPublisher } from "../events/publisher/comment-updated-publisher";
 const router = express.Router();
 
 /* Front end updated comment data object is assumed to be-
@@ -24,6 +26,11 @@ router.put(
       content: comment.content,
     });
     await foundComment.save();
+
+    new CommentUpdatedPublisher(natsWrapper.client).publish({
+      commentId: foundComment.id,
+      content: foundComment.content!,
+    });
 
     console.log("Comment updated");
 
