@@ -1,6 +1,6 @@
 {
   "name": "@devion/common",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "This npm module has neccessary custom errors and authentication middlewares defined in it.",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
