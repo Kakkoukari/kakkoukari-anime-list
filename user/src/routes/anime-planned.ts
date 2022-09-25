@@ -24,4 +24,4 @@ router.put("/api/profile/animes/dropped", currentUser, async (req, res) => {
   res.status(200).send({ message: "Anime Dropped" });
 });
 
-export { router as droppedAnimeRouter };
+export { router as AnimePlannedRouter };
