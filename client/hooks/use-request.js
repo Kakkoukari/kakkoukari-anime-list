@@ -7,20 +7,18 @@ const useRequest = ({ url, method, body, onSuccess }) => {
   const doRequest = async (props = {}) => {
     try {
       setErrors(null);
-      const response = await axios[method](
-        url,
-        { ...body, ...props },
-        { withCredentials: true }
-      );
+      const response = await axios[method](url, { ...body, ...props });
+
       if (onSuccess) {
         onSuccess(response.data);
       }
+
       return response.data;
     } catch (err) {
       setErrors(
-        <div>
-          <h4>ERRORS....</h4>
-          <ul>
+        <div className="alert alert-danger mt-3">
+          <h4>Ooops....</h4>
+          <ul className="my-0">
             {err.response.data.errors.map((err) => (
               <li key={err.message}>{err.message}</li>
             ))}

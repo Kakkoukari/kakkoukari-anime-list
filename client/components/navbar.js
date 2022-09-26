@@ -10,7 +10,7 @@ const NavBar = ({ currentUser }) => (
           <a>MyList</a>
         </Link>
       ) : (
-        <Link href="#">
+        <Link href="/signup">
           <a>SignUp</a>
         </Link>
       )}
@@ -21,7 +21,7 @@ const NavBar = ({ currentUser }) => (
           <a>Profile</a>
         </Link>
       ) : (
-        <Link href="#">
+        <Link href="/login">
           <a>SignIn</a>
         </Link>
       )}

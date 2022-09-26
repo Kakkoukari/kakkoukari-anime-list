@@ -30,43 +30,45 @@ const Signup = () => {
     <div id={`${styles.loginform}`}>
       <h2 id={`${styles.headerTitle}`}>Login</h2>
       <div>
-        <div className={`${styles.row}`}>
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="Enter your Email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-        </div>
-        <div className={`${styles.row}`}>
-          <label>Username</label>
-          <input
-            type="text"
-            placeholder="Enter your Username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-        </div>
-        <div className={`${styles.row}`}>
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="Enter your Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </div>
-        {errors}
-        <div id={`${styles.button}`} className={`${styles.row}`}>
-          <button onSubmit={onSubmit}>Login</button>
-        </div>
+        <form onSubmit={onSubmit}>
+          <div className={`${styles.row}`}>
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Enter your Email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          </div>
+          <div className={`${styles.row}`}>
+            <label>Username</label>
+            <input
+              type="text"
+              placeholder="Enter your Username"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+          </div>
+          <div className={`${styles.row}`}>
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Enter your Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
+          {errors}
+          <div id={`${styles.button}`} className={`${styles.row}`}>
+            <button type="submit">Login</button>
+          </div>
+        </form>
       </div>
     </div>
   );
