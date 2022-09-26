@@ -49,7 +49,6 @@ router.post(
       username: user.username,
       userId: user.id,
     });
-    console.log("error");
     res.status(201).send(user);
   }
 );

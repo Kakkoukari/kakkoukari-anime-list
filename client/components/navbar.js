@@ -10,7 +10,7 @@ const NavBar = ({ currentUser }) => (
           <a>MyList</a>
         </Link>
       ) : (
-        <Link href="#">
+        <Link href="/signup">
           <a>SignUp</a>
         </Link>
       )}
@@ -18,17 +18,25 @@ const NavBar = ({ currentUser }) => (
     <div className={`${styles.navbar__item} ${styles.navbar__link}`}>
       {currentUser ? (
         <Link href="#">
-          <a>Profile</a>
+          <a>AboutUs</a>
         </Link>
       ) : (
-        <Link href="#">
+        <Link href="/login">
           <a>SignIn</a>
         </Link>
       )}
     </div>
     <div className={`${styles.navbar__item} ${styles.navbar__link}`}>
-      <Link href="#">
-        <a>AboutUs</a>
+      <Link href="/profile">
+        <img
+          src={
+            currentUser?.profilepic ||
+            "https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-avatar-placeholder-png-image_3416697.jpg"
+          }
+          height="35px"
+          style={{ borderRadius: "50%" }}
+          alt=""
+        />
       </Link>
     </div>
   </header>
