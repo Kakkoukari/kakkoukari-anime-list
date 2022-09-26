@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../styles/signup.module.scss";
 import { Router } from "next/router";
-import { useRequest } from "../hooks/use-request";
+import useRequest from "../hooks/use-request";
 
 const Signup = () => {
   const [email, setEmail] = useState("");

@@ -27,7 +27,7 @@ const NavBar = ({ currentUser }) => (
       )}
     </div>
     <div className={`${styles.navbar__item} ${styles.navbar__link}`}>
-      <Link href="#">
+      <Link href="/profile">
         <img
           src={
             currentUser?.profilepic ||
