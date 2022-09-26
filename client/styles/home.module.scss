@@ -1,0 +1,90 @@
+.listContainer {
+  display: flex;
+  color: white;
+  border-radius: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: left;
+  margin: 10px auto;
+  width: 100%;
+  max-width: 1400px;
+  min-width: 800px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: linear-gradient(-45deg, #ffc600, #d1c939, #b9ed2b, #ffa51d);
+  border-bottom: 4px rgba(255, 255, 255, 0.564) solid;
+  border-right: 6px rgba(255, 255, 255, 0.564) solid;
+  .listItem {
+    display: grid;
+    grid-template-columns: 10% 30% 60%;
+    text-align: center;
+    height: 175px;
+    border-bottom: 1px rgba(255, 255, 255, 0.564) solid;
+    .image {
+      width: fit-content;
+      height: fit-content;
+      margin: auto;
+      width: 100px;
+      height: 100px;
+    }
+    .info {
+      height: 100%;
+      text-align: left;
+      padding: 5%;
+      margin: auto;
+      min-width: 250px;
+      width: 300px;
+      border: 2px rgba(255, 255, 255, 0.564) solid;
+      border-top: 0px;
+      border-bottom: 0px;
+      border-right: 0px;
+      h2 {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        transition: 1s;
+      }
+      h2:hover {
+        color: #5800ff;
+      }
+      h4 {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        display: inline;
+      }
+      span {
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        color: rgba(255, 255, 255, 0.89);
+      }
+    }
+    .synopsis {
+      width: 950px;
+      text-align: left;
+      padding: 1.5%;
+      height: 100%;
+      margin: auto;
+      border: 2px rgba(255, 255, 255, 0.564) solid;
+      border-top: 0px;
+      border-bottom: 0px;
+      border-right: 0px;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      p {
+        color: rgba(255, 255, 255, 0.89);
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+    }
+  }
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
