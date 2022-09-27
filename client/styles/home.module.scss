@@ -1,7 +1,6 @@
 .listContainer {
   display: flex;
   color: white;
-  border-radius: 10px;
   flex-direction: row;
   flex-wrap: wrap;
   text-align: left;
@@ -12,16 +11,35 @@
   padding: 0 10px;
   box-sizing: border-box;
   color: #fff;
-  background: linear-gradient(-45deg, #ff7a15, #d18339, #d18339, #ff7a15);
-  border-bottom: 4px rgba(255, 255, 255, 0.564) solid;
-  border-right: 6px rgba(255, 255, 255, 0.564) solid;
-  animation: gradientBG 10s ease infinite;
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
   .listItem {
     display: grid;
     grid-template-columns: 10% 30% 60%;
     text-align: center;
     height: 250px;
-    border-bottom: 1px rgba(255, 255, 255, 0.564) solid;
+    margin-top: 1.5rem;
+    background-image: linear-gradient(
+      -45deg,
+      #3c15ff,
+      #d16239,
+      #d18339,
+      #3c15ff
+    );
+    border-bottom: 4px rgba(255, 255, 255, 0.564) solid;
+    border-right: 6px rgba(255, 255, 255, 0.564) solid;
+    border-radius: 10px;
+    background-size: 400% 400%;
+    &:hover {
+      animation: gradientBG 5s ease;
+      animation-fill-mode: forwards;
+    }
     .image {
       width: fit-content;
       height: fit-content;
@@ -84,16 +102,5 @@
           sans-serif;
       }
     }
-  }
-}
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
   }
 }
