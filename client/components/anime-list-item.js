@@ -5,22 +5,25 @@ import TestImage from "../public/test-image.png";
 import Link from "next/link";
 
 const AnimeListItem = ({
-  animeTitle,
+  animeTitles,
   animeSynopsis,
   animeNumberOfEpisodes,
   animeRating,
   animeGenres,
   animeImage,
+  animeMalId,
 }) => {
   return (
     <div className={styles.listItem}>
       <div className={styles.image}>
+        {/* Pass anime malId Dynamically the route should be- /[animeName]/[malId] */}
         <Link href="#">
           <a>
             {!animeImage ? (
-              <Image src={TestImage} width={100} height={100} />
+              <Image src={TestImage} width={150} height={150} />
             ) : (
-              <Image src={animeImage} width={100} height={100} />
+              // <Image src={animeImage} width={100} height={100} />
+              <img src={animeImage} width={150} height={150} />
             )}
           </a>
         </Link>
@@ -28,7 +31,36 @@ const AnimeListItem = ({
       <div className={styles.info}>
         <div className={styles.title}>
           <Link href="#">
-            <a>{!animeTitle ? <h2>THE ANIME</h2> : <h2>{animeTitle}</h2>}</a>
+            <a>
+              {!animeTitles ? (
+                <h2>THE ENGLISH ANIME</h2>
+              ) : (
+                <h2>
+                  {animeTitles.map((title) => {
+                    if (title.type === "English") {
+                      return title.title;
+                    }
+                  })}
+                </h2>
+              )}
+            </a>
+          </Link>
+        </div>
+        <div className={styles.title}>
+          <Link href="#">
+            <a>
+              {!animeTitles ? (
+                <h3>カウボーイビバップ 天国の扉</h3>
+              ) : (
+                <h3>
+                  {animeTitles.map((title) => {
+                    if (title.type === "Japanese") {
+                      return title.title;
+                    }
+                  })}
+                </h3>
+              )}
+            </a>
           </Link>
         </div>
         <div className={styles.description}>
@@ -50,7 +82,7 @@ const AnimeListItem = ({
               <span>Genre Genre Genre Genre</span>
             ) : (
               animeGenres.map((genre) => {
-                return <span>{genre.name}</span>;
+                return <span>{genre.name} </span>;
               })
             )}
           </div>
