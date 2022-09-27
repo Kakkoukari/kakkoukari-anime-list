@@ -12,14 +12,15 @@
   padding: 0 10px;
   box-sizing: border-box;
   color: #fff;
-  background: linear-gradient(-45deg, #ffc600, #d1c939, #b9ed2b, #ffa51d);
+  background: linear-gradient(-45deg, #ff7a15, #d18339, #d18339, #ff7a15);
   border-bottom: 4px rgba(255, 255, 255, 0.564) solid;
   border-right: 6px rgba(255, 255, 255, 0.564) solid;
+  animation: gradientBG 10s ease infinite;
   .listItem {
     display: grid;
     grid-template-columns: 10% 30% 60%;
     text-align: center;
-    height: 175px;
+    height: 250px;
     border-bottom: 1px rgba(255, 255, 255, 0.564) solid;
     .image {
       width: fit-content;
@@ -46,6 +47,15 @@
       h2:hover {
         color: #5800ff;
       }
+      h3 {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        transition: 1s;
+        &:hover {
+          color: #5800ff;
+        }
+      }
+
       h4 {
         font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
           "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -76,7 +86,6 @@
     }
   }
 }
-
 @keyframes gradientBG {
   0% {
     background-position: 0% 50%;

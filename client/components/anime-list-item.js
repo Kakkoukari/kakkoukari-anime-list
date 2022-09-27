@@ -5,7 +5,7 @@ import TestImage from "../public/test-image.png";
 import Link from "next/link";
 
 const AnimeListItem = ({
-  animeTitle,
+  animeTitles,
   animeSynopsis,
   animeNumberOfEpisodes,
   animeRating,
@@ -28,7 +28,36 @@ const AnimeListItem = ({
       <div className={styles.info}>
         <div className={styles.title}>
           <Link href="#">
-            <a>{!animeTitle ? <h2>THE ANIME</h2> : <h2>{animeTitle}</h2>}</a>
+            <a>
+              {!animeTitles ? (
+                <h2>THE ENGLISH ANIME</h2>
+              ) : (
+                <h2>
+                  {animeTitles.map((title) => {
+                    if (title === "English") {
+                      return title.title;
+                    }
+                  })}
+                </h2>
+              )}
+            </a>
+          </Link>
+        </div>
+        <div className={styles.title}>
+          <Link href="#">
+            <a>
+              {!animeTitles ? (
+                <h3>カウボーイビバップ 天国の扉</h3>
+              ) : (
+                <h3>
+                  {animeTitles.map((title) => {
+                    if (title === "Japanese") {
+                      return title.title;
+                    }
+                  })}
+                </h3>
+              )}
+            </a>
           </Link>
         </div>
         <div className={styles.description}>

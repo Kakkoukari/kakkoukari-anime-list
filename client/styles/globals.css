@@ -2,6 +2,11 @@ html,
 body {
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
+  color: #fff;
+  background: linear-gradient(-45deg, #07000f, #26004d, #0e0025, #07000f);
+  background-size: 2000% 2000%;
+  animation: gradientBG 10s ease infinite;
 }
 
 a {
@@ -18,7 +23,24 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    color: #fff;
+    background: linear-gradient(-45deg, #07000f, #26004d, #0e0025, #07000f);
+    background-size: 2000% 2000%;
+    animation: gradientBG 10s ease infinite;
+  }
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
