@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "../styles/profile.module.scss";
 import useRequest from "../hooks/use-request";
 
 const Profile = ({ currentUser }) => {
-  const [profilepic, setProfilepic] = useState(null);
+  const fileRef = useRef(null);
+
+  const [profilepic, setProfilepic] = useState("");
   const [profilepicUrl, setProfilepicUrl] = useState(null);
 
   const { doRequest, errors } = useRequest({
-    url: "/api/users/update",
+    url: "/api/profile/update",
     method: "put",
     body: {
       profilepic: profilepicUrl,
@@ -16,30 +17,41 @@ const Profile = ({ currentUser }) => {
     onSuccess: () => Router.push("/"),
   });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const { doRequest: doRequest2, errors: errors2 } = useRequest({
+    url: "/api/profile/imagekit",
+    method: "post",
+    body: {
+      profilepic: profilepic,
+    },
+    onSuccess: (data) => {
+      console.log("data:  ", data);
+      setProfilepicUrl(data.url);
+    },
+  });
 
-    try {
-      const imageKitResponse = axios({
-        url: "https://upload.imagekit.io/api/v1/files/upload",
-        method: "post",
-        body: {
-          file: profilepic,
-          publicKey: "public_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-          signature: "signature_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-          expire: "expire_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-          fileName: "fileName_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-          useUniqueFileName: true,
-        },
-      });
-
-      setProfilepicUrl(imageKitResponse.url);
-    } catch (err) {
-      console.log(err);
+  const handleFileChange = (e) => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
     }
 
-    // doRequest();
+    reader.onload = (readerEvent) => {
+      setProfilepic(readerEvent.target.result);
+    };
   };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    await doRequest2().then(async () => {
+      console.log("ok");
+      await doRequest();
+    });
+  };
+
+  useEffect(() => {
+    if (currentUser?.profilepic) setProfilepic(currentUser.profilepic);
+  }, [currentUser]);
 
   return currentUser ? (
     <div className={`${styles.card}`} data-state="#about">
@@ -48,9 +60,10 @@ const Profile = ({ currentUser }) => {
         <img
           className={`${styles.cardavatar}`}
           src={
-            currentUser.profilepic ||
+            profilepic ||
             "https://i.pinimg.com/236x/28/2f/81/282f81f5de984104a9227583b39df527.jpg"
           }
+          onClick={() => fileRef.current.click()}
           alt="avatar"
         />
 
@@ -67,11 +80,28 @@ const Profile = ({ currentUser }) => {
           </div>
         </div>
         <div className={`${styles.carddesc} ${styles.cardcontent}`}>
-          <button className={`${styles.button}`}>Edit Profile Picture</button>
+          <form onSubmit={onSubmit}>
+            <input
+              type="file"
+              ref={fileRef}
+              hidden
+              onChange={handleFileChange}
+            />
+            <button
+              className={`${styles.button}`}
+              onClick={() => fileRef.current.click()}
+            >
+              Edit Profile Picture
+            </button>
 
-          <button className={`${styles.button}`} onSubmit={onSubmit}>
-            Submit
-          </button>
+            <button
+              type="submit"
+              className={`${styles.button}`}
+              onSubmit={onSubmit}
+            >
+              Submit
+            </button>
+          </form>
         </div>
       </div>
     </div>
