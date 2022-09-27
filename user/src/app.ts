@@ -13,6 +13,7 @@ import { droppedAnimeRouter } from "./routes/anime-dropped";
 import { getAllAnimeListRouter } from "./routes/get-all-list-anime";
 import { getOnHoldAnimeListRouter } from "./routes/get-on-hold-list-anime";
 import { getWatchingAnimeListRouter } from "./routes/get-watching-list-anime";
+import { imagekitAuthRouter } from "./routes/imagekit-auth";
 
 const app = express();
 app.set("trust proxy", true);
@@ -33,6 +34,7 @@ app.use(droppedAnimeRouter);
 app.use(getAllAnimeListRouter);
 app.use(getOnHoldAnimeListRouter);
 app.use(getWatchingAnimeListRouter);
+app.use(imagekitAuthRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();

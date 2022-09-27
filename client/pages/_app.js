@@ -2,7 +2,6 @@ import "../styles/globals.css";
 import NavBar from "../components/navbar";
 import buildClient from "../api/build-client";
 const AppComponent = ({ Component, pageProps, currentUser }) => {
-  console.log("current user", currentUser);
   return (
     <>
       <NavBar currentUser={currentUser} />
