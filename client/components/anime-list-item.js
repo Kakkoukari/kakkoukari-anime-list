@@ -11,16 +11,19 @@ const AnimeListItem = ({
   animeRating,
   animeGenres,
   animeImage,
+  animeMalId,
 }) => {
   return (
     <div className={styles.listItem}>
       <div className={styles.image}>
+        {/* Pass anime malId Dynamically the route should be- /[animeName]/[malId] */}
         <Link href="#">
           <a>
             {!animeImage ? (
-              <Image src={TestImage} width={100} height={100} />
+              <Image src={TestImage} width={150} height={150} />
             ) : (
-              <Image src={animeImage} width={100} height={100} />
+              // <Image src={animeImage} width={100} height={100} />
+              <img src={animeImage} width={150} height={150} />
             )}
           </a>
         </Link>
@@ -34,7 +37,7 @@ const AnimeListItem = ({
               ) : (
                 <h2>
                   {animeTitles.map((title) => {
-                    if (title === "English") {
+                    if (title.type === "English") {
                       return title.title;
                     }
                   })}
@@ -51,7 +54,7 @@ const AnimeListItem = ({
               ) : (
                 <h3>
                   {animeTitles.map((title) => {
-                    if (title === "Japanese") {
+                    if (title.type === "Japanese") {
                       return title.title;
                     }
                   })}
@@ -79,7 +82,7 @@ const AnimeListItem = ({
               <span>Genre Genre Genre Genre</span>
             ) : (
               animeGenres.map((genre) => {
-                return <span>{genre.name}</span>;
+                return <span>{genre.name} </span>;
               })
             )}
           </div>

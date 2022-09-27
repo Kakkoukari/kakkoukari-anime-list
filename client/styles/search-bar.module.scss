@@ -1,0 +1,20 @@
+.searchBar {
+  background-color: transparent;
+  padding: 2px;
+  input {
+    margin-left: 10px;
+    width: 400px;
+    text-decoration: none;
+    box-shadow: none;
+    border-radius: 2px;
+  }
+  border-radius: 3px;
+  .image {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    display: inline;
+    position: relative;
+    top: 5px;
+  }
+}
