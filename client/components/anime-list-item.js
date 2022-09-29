@@ -96,7 +96,10 @@ const AnimeListItem = ({
             error! Please Refresh The Page or Kindly Fuck Off!
           </p>
         ) : (
-          <p>{animeSynopsis}</p>
+          <p>
+            {animeSynopsis}
+            {animeSynopsis}
+            </p>
         )}
       </div>
     </div>
