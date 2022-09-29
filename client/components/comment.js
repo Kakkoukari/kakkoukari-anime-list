@@ -7,7 +7,7 @@ const Comment = ({ comment, currentUser }) => {
 
   return (
     <>
-      <div className="app container py-4 text-light">
+      <div className="app container py-1 text-light">
         <div className="col-md-10 col-lg-8 m-auto">
           <div className="bg-dark rounded-3 shadow-sm p-4">
             <div className="py-3">

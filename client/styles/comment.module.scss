@@ -13,6 +13,11 @@ $comment-img-size-sm: 1.75rem;
   }
 }
 
+.img {
+  width: $comment-img-size;
+  height: $comment-img-size;
+}
+
 .formcontrol {
   background-color: rgba(#ffffff, 0.05);
 }
