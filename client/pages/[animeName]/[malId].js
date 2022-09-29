@@ -3,6 +3,7 @@ import styles from "../../styles/animepage.module.scss";
 import AnimeImage from "../../public/test-image.png";
 import Image from "next/image";
 import { AnimeStatus } from "@devion/common";
+import CommentListContainer from "../../components/comment-list-container";
 const AnimePage = ({ params, currentUser }) => {
   const handleSubmit = async (e) => {};
   const postComment = async (e) => {};
@@ -63,21 +64,15 @@ const AnimePage = ({ params, currentUser }) => {
           </div>
         </div>
       </div>
-      <div className={styles.commentContainer}>
-        <h1>Add Comment</h1>
-        <form onSubmit={postComment}>
-          <textarea
-            id="comment"
-            name="comment"
-            rows="5"
-            cols="100"
-            placeholder="Write Your Comment Here"
-          ></textarea>
-          <button type="submit" className={styles.subButton}>
-            Comment
-          </button>
-        </form>
-      </div>
+      {currentUser ? (
+        <div className={styles.commentContainer}>
+          <CommentListContainer />
+        </div>
+      ) : (
+        <div className={styles.signIn}>
+          <h2>Sign In To Add Comments</h2>
+        </div>
+      )}
     </div>
   );
 };
