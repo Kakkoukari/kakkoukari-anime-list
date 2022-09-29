@@ -1,0 +1,121 @@
+$color-alpha: #ffc600;
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  .topContainer {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    color: white;
+    .image {
+      margin-top: 50%;
+      background-color: rgba(#000, 0.5);
+      width: fit-content;
+      height: fit-content;
+      max-width: 600px;
+      border: 2px solid $color-alpha;
+      .imageInner {
+        position: relative;
+        border: 2px solid $color-alpha;
+        padding: 40px;
+        &:before,
+        &:after {
+          content: "•";
+          position: absolute;
+          width: 14px;
+          height: 14px;
+          font-size: 14px;
+          color: $color-alpha;
+          border: 2px solid $color-alpha;
+          line-height: 12px;
+          bottom: -2px;
+          text-align: center;
+        }
+        &:before {
+          left: -2px;
+        }
+        &:after {
+          right: -2px;
+        }
+      }
+    }
+    .content {
+      margin: 2%;
+      padding: 10%;
+      height: fit-content;
+      text-overflow: clip;
+      border: 0.5px $color-alpha solid;
+      background-color: #ffc80013;
+      width: 1000px;
+      font-size: 1.1rem;
+      .title {
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+      .header {
+        span {
+          color: rgba(255, 255, 255, 0.782);
+          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+            sans-serif;
+        }
+        h3 {
+          display: inline;
+        }
+        margin-top: 10px;
+      }
+      .synopsis {
+        overflow: hidden;
+        word-break: break-all;
+        white-space: normal;
+        p {
+          color: rgba(255, 255, 255, 0.782);
+          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+            sans-serif;
+        }
+        h3 {
+          display: inline;
+        }
+        margin-top: 10px;
+        border: 2px rgba(255, 255, 255, 0.712);
+      }
+      .watchButton {
+        .subButton {
+          margin-left: 10px;
+          background-color: #ffc600;
+          font-size: 1.2rem;
+          font-weight: bold;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+        }
+        select {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+  .commentContainer {
+    margin-left: 22%;
+    background-color: #ffc80013;
+    border: 0.5px $color-alpha solid;
+    height: fit-content;
+    width: 1000px;
+    text-align: center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    textarea {
+      width: 1000px;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    }
+    .subButton {
+      margin-left: 10px;
+      background-color: #ffc600;
+      font-size: 1.2rem;
+      font-weight: bold;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      display: block;
+      margin: auto;
+      margin-top: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+  }
+}
