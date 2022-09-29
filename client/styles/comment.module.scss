@@ -1,0 +1,28 @@
+$comment-img-size: 3rem;
+$comment-img-size-sm: 1.75rem;
+
+.comment {
+  &img {
+    width: $comment-img-size;
+    height: $comment-img-size;
+  }
+
+  &replies &img {
+    width: $comment-img-size-sm;
+    height: $comment-img-size-sm;
+  }
+}
+
+.formcontrol {
+  background-color: rgba(#ffffff, 0.05);
+}
+
+/* ----- testing ----- */
+.appmenu {
+  .btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    font-size: 1.5rem;
+  }
+}
