@@ -12,14 +12,14 @@ const AnimeListContainer = () => {
   //     body: {},
   //     onSuccess: (data) => {
   //       console.log(data);
-  //       setAnimeList(data);
+  //       setObtainedAnimes(data);
   //     },
   //   });
   //     useEffect(() => {
   //       doRequest();
   //     }, []);
   const [search, setSearch] = useState("");
-  const [obtainedAnimes, setObtainAnimes] = useState([
+  const [obtainedAnimes, setObtainedAnimes] = useState([
     {
       titles: [
         { type: "English", title: "DragonRaja" },
