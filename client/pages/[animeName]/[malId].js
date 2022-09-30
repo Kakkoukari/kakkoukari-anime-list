@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/animepage.module.scss";
 import AnimeImage from "../../public/test-image.png";
 import Image from "next/image";
 import { AnimeStatus } from "@devion/common";
 import CommentListContainer from "../../components/comment-list-container";
+import useRequest from "../../hooks/use-request";
 const AnimePage = ({ params, currentUser }) => {
-  const handleSubmit = async (e) => {};
-  const postComment = async (e) => {};
+  const { title, setTitle } = useState("");
+  const { duration, setDuration } = useState("");
+  const { type, setType } = useState("");
+  const { rating, setRating } = useState("");
+  const { episodes, setEpisodes } = useState("");
+  const { genre, setGenre } = useState();
+  const { synopsis, setSynopsis } = useState("");
+  const { animeId, setAnimeId } = useState("");
+
+  const { doRequest, errors } = useRequest({
+    url: `/api/animes/new/${params.malId}`,
+    method: "get",
+    body: {},
+    onSuccess: (data) => {
+      console.log(data);
+      setTitle(data.title);
+      setDuration(data.duration);
+      setType(data.type);
+      setRating(data.rating);
+      setEpisodes(data.episodes);
+      setGenre(data.genre);
+      setSynopsis(data.synopsis);
+      setAnimeId(data.id);
+    },
+  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    doRequest();
+  };
   return (
     <div className={styles.profileContainer}>
       <div className={styles.topContainer}>
@@ -21,32 +49,39 @@ const AnimePage = ({ params, currentUser }) => {
           </div>
           <div className={styles.header}>
             <h3>Anime Type: </h3>
-            <span>Tv</span>
+            <span>{type ? type : <>Sorry could not get Type</>}</span>
           </div>
           <div className={styles.header}>
             <h3>Rating: </h3>
-            <span> 6/10</span>
+            <span> {rating ? rating : <>Sorry could not get Rating</>}</span>
           </div>
           <div className={styles.header}>
             <h3>Duration: </h3>
-            <span>06 July 2022-07 August 2022</span>
+            <span>
+              {duration ? duration : <>Sorry could not get Duration</>}
+            </span>
           </div>
           <div className={styles.header}>
             <h3>Number Of Episodes: </h3>
-            <span>12</span>
+            <span>
+              {episodes ? episodes : <>Sorry could not get Episodes</>}
+            </span>
           </div>
           <div className={styles.header}>
             <h3> Genre: </h3>
-            <span>Action Adventure Romance</span>
+            <span>
+              {genre ? (
+                genre.map(() => {
+                  return <span>genre.name </span>;
+                })
+              ) : (
+                <>Sorry Could not get genres</>
+              )}
+            </span>
           </div>
           <div className={styles.synopsis}>
             <h1>Synopsis</h1>
-            <p>
-              saflasnflnaslfknalskfnlasnflasknflasnf;asflaksnflasnflasnflaksnflaknslfkanslfknaslkfnalsknfalskfnalsowijad
-              alsgnaosngioangioansgoiajsoigjawgnwiangnaiogjoasgoasijaosijfasifoiasjioajoiaosijaosijsaoijgoaigjaosigjasoi
-              alsgnaosngioangioansgoiajsoigjawgnwiangnaiogjoasgoasijaosijfasifoiasjioajoiaosijaosijsaoijgoaigjaosigjasosafaafmsalmlkasmglkasmglkasmgaslkglasmlagmslgamsmlgmslakmlgasmglakmgakmsl
-              alsgnaosngioangioansgoiajsoigjawgnwiangnaiogjoasgoasijaosijfasifoiasjioajoiaosijaosijsaoijgoaigjaosigjasoi
-            </p>
+            <p>{synopsis ? synopsis : <>Sorry could not get Synopsis</>}</p>
           </div>
           <div className={styles.watchButton}>
             <form onSubmit={handleSubmit}>
@@ -66,7 +101,7 @@ const AnimePage = ({ params, currentUser }) => {
       </div>
       {currentUser ? (
         <div className={styles.commentContainer}>
-          <CommentListContainer />
+          <CommentListContainer animeId={animeId} malId={malId} />
         </div>
       ) : (
         <div className={styles.signIn}>

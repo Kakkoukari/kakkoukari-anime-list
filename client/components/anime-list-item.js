@@ -1,4 +1,4 @@
-import React, { useRequest, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../styles/home.module.scss";
 import TestImage from "../public/test-image.png";
@@ -13,6 +13,18 @@ const AnimeListItem = ({
   animeImage,
   animeMalId,
 }) => {
+  const [engTitle, setEngTitle] = useState("");
+  const [japTitle, setJapTitle] = useState("");
+  useEffect(() => {
+    setEngTitle(animeTitles[0].title);
+    setJapTitle(
+      animeTitles.map((title) => {
+        if (title.type === "Japanese") {
+          return title.title;
+        }
+      })
+    );
+  }, []);
   return (
     <div className={styles.listItem}>
       <div className={styles.image}>
@@ -30,35 +42,19 @@ const AnimeListItem = ({
       </div>
       <div className={styles.info}>
         <div className={styles.title}>
-          <Link href="#">
+          <Link href={`/${engTitle}/${animeMalId}`}>
             <a>
-              {!animeTitles ? (
-                <h2>THE ENGLISH ANIME</h2>
-              ) : (
-                <h2>
-                  {animeTitles.map((title) => {
-                    if (title.type === "English") {
-                      return title.title;
-                    }
-                  })}
-                </h2>
-              )}
+              {!animeTitles ? <h2>THE ENGLISH ANIME</h2> : <h2>{engTitle}</h2>}
             </a>
           </Link>
         </div>
         <div className={styles.title}>
-          <Link href="#">
+          <Link href={`/${japTitle}/${animeMalId}`}>
             <a>
               {!animeTitles ? (
                 <h3>カウボーイビバップ 天国の扉</h3>
               ) : (
-                <h3>
-                  {animeTitles.map((title) => {
-                    if (title.type === "Japanese") {
-                      return title.title;
-                    }
-                  })}
-                </h3>
+                <h3>{japTitle}</h3>
               )}
             </a>
           </Link>
@@ -99,7 +95,7 @@ const AnimeListItem = ({
           <p>
             {animeSynopsis}
             {animeSynopsis}
-            </p>
+          </p>
         )}
       </div>
     </div>
