@@ -34,7 +34,7 @@ const NavBar = ({ currentUser }) => (
         <img
           src={
             currentUser?.profilepic ||
-            "https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-avatar-placeholder-png-image_3416697.jpg"
+            "https://i.pinimg.com/236x/28/2f/81/282f81f5de984104a9227583b39df527.jpg"
           }
           height="35px"
           style={{ borderRadius: "50%" }}
