@@ -3,7 +3,7 @@ import { AnimeStatus } from "@devion/common";
 import styles from "../styles/animelist.module.scss";
 
 import AnimeListContainer from "../components/anime-list-container";
-const AnimeList = ({ data }) => {
+const AnimeList = ({ data, currenUser }) => {
   const [animeData, setAnimeData] = useState(data);
 
   const handleClick = (e, filterType) => {
@@ -16,7 +16,7 @@ const AnimeList = ({ data }) => {
     }
   };
 
-  return (
+  return currenUser ? (
     <>
       <table className={styles.table}>
         <thead>
@@ -74,6 +74,17 @@ const AnimeList = ({ data }) => {
       </table>
       <AnimeListContainer data={animeData} />
     </>
+  ) : (
+    <h1
+      style={{
+        color: "white",
+        margin: "20% 45%",
+        textAlign: "center",
+        fontSize: "3rem",
+      }}
+    >
+      Please Sign In
+    </h1>
   );
 };
 
