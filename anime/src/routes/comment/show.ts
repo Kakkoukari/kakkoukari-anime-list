@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post("/api/animes/comments", async (req: Request, res: Response) => {
   const comments = await Comment.find({
-    animeId: req.body.animeId,
+    malId: req.body.malId,
   });
 
   res.send(comments);

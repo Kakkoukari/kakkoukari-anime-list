@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../styles/animepage.module.scss";
 import AnimeImage from "../../public/test-image.png";
 import Image from "next/image";
@@ -6,22 +6,50 @@ import { AnimeStatus } from "@devion/common";
 import CommentListContainer from "../../components/comment-list-container";
 import useRequest from "../../hooks/use-request";
 const AnimePage = ({ params, currentUser }) => {
-  const { title, setTitle } = useState("");
-  const { duration, setDuration } = useState("");
-  const { type, setType } = useState("");
-  const { rating, setRating } = useState("");
-  const { episodes, setEpisodes } = useState("");
-  const { genre, setGenre } = useState();
-  const { synopsis, setSynopsis } = useState("");
-  const { animeId, setAnimeId } = useState("");
-
+  const [titles, setTitles] = useState("");
+  const [duration, setDuration] = useState("");
+  const [type, setType] = useState("");
+  const [rating, setRating] = useState("");
+  const [episodes, setEpisodes] = useState("");
+  const [genre, setGenre] = useState();
+  const [synopsis, setSynopsis] = useState("");
+  const [animeId, setAnimeId] = useState("");
+  const [images, setImages] = useState();
+  const [score, setScore] = useState();
+  const [comments, setComments] = useState();
+  const [status, setStatusAnime] = useState("");
+  const request2 = useRequest({
+    url: `/api/profile/update`,
+    method: "put",
+    body: {
+      animeUpdate: {
+        anime: {
+          titles: titles,
+          type: type,
+          malId: params.malId,
+          images: images,
+          episodes: episodes,
+          duration: duration,
+          score: score,
+          synopsis: synopsis,
+          genres: genre,
+          comments: comments,
+        },
+        animeId: params.malId,
+        status: status,
+      },
+    },
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
   const { doRequest, errors } = useRequest({
     url: `/api/animes/new/${params.malId}`,
     method: "get",
     body: {},
     onSuccess: (data) => {
       console.log(data);
-      setTitle(data.title);
+      setTitles(data.titles);
       setDuration(data.duration);
       setType(data.type);
       setRating(data.rating);
@@ -29,18 +57,35 @@ const AnimePage = ({ params, currentUser }) => {
       setGenre(data.genre);
       setSynopsis(data.synopsis);
       setAnimeId(data.id);
+      setScore(data.score);
+      setComments(data.comments);
+      setImages(data.images);
     },
   });
+  useEffect(() => {
+    doRequest();
+  }, []);
+  useEffect(() => {
+    request2.doRequest();
+  }, [status]);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    doRequest();
+    const select = e.target.status;
+    const selectedStatus = select.options[select.selectedIndex].value;
+    setStatusAnime(selectedStatus);
   };
   return (
     <div className={styles.profileContainer}>
       <div className={styles.topContainer}>
         <div class={styles.image}>
           <div className={styles.imageInner}>
-            <Image src={AnimeImage} width={350} height={350} />
+            {!images ? (
+              <Image src={AnimeImage} width={350} height={350} />
+            ) : (
+              <>
+                <img src={images[0]} />
+              </>
+            )}
           </div>
         </div>
         <div class={styles.content}>
