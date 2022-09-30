@@ -29,7 +29,7 @@ const AnimeListItem = ({
     <div className={styles.listItem}>
       <div className={styles.image}>
         {/* Pass anime malId Dynamically the route should be- /[animeName]/[malId] */}
-        <Link href="#">
+        <Link href={`/${engTitle}/${animeMalId}`}>
           <a>
             {!animeImage ? (
               <Image src={TestImage} width={150} height={150} />
@@ -92,10 +92,7 @@ const AnimeListItem = ({
             error! Please Refresh The Page or Kindly Fuck Off!
           </p>
         ) : (
-          <p>
-            {animeSynopsis}
-            {animeSynopsis}
-          </p>
+          <p>{animeSynopsis}</p>
         )}
       </div>
     </div>
