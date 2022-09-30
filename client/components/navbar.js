@@ -9,7 +9,7 @@ const NavBar = ({ currentUser }) => (
     </div>
     <div className={`${styles.navbar__item} ${styles.navbar__link}`}>
       {currentUser ? (
-        <Link href="#">
+        <Link href="/animelist">
           <a>MyList</a>
         </Link>
       ) : (
@@ -20,7 +20,7 @@ const NavBar = ({ currentUser }) => (
     </div>
     <div className={`${styles.navbar__item} ${styles.navbar__link}`}>
       {currentUser ? (
-        <Link href="#">
+        <Link href="aboutus">
           <a>AboutUs</a>
         </Link>
       ) : (
