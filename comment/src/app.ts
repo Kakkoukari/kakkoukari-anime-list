@@ -7,6 +7,7 @@ import { AddCommentRouter } from "./routes/add-comment";
 import { GetAllCommentRouter } from "./routes/show-all-comment";
 import { UpdateCommentRouter } from "./routes/update-comment";
 import { RemoveCommentRouter } from "./routes/remove-comment";
+import { GetCommentRouter } from "./routes/show";
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(
 
 //Routes
 app.use(AddCommentRouter);
+app.use(GetCommentRouter);
 app.use(GetAllCommentRouter);
 app.use(UpdateCommentRouter);
 app.use(RemoveCommentRouter);
