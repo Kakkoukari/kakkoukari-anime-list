@@ -5,38 +5,44 @@ import AddComment from "./add-comment";
 import useRequest from "../hooks/use-request";
 const CommentListContainer = ({ currentUser, animeId, malId }) => {
   const { comments, setComments } = useState([]);
-  /*The Route To Add a New Comment*/
-  // const { doRequest, errors } = useRequest({
-  //   url: "/api/comments/add",
-  //   method: "post",
-  //   body: {
-  //     animeId: animeId,
-  //     conent: content,
-  //     malId: malId,
-  //   },
-  //   onSuccess: (data) => {
-  //     console.log(data);
-  //     let newComments = comments;
-  //     newComments.push(data);
-  //     setComments(newComments);
-  //   },
-  // });
-  useEffect();
-  const renderComments = () => {
+
+  /*The Route to show the Comments associated with an anime*/
+  const { doRequest, errors } = useRequest({
+    url: `/api/comments/show/${malId}`,
+    method: "post",
+    body: {
+      animeId: animeId,
+      conent: content,
+      malId: malId,
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      let newComments = comments;
+      newComments.push(data);
+      setComments(newComments);
+    },
+  });
+
+  const RenderComments = () => {
     return comments.map((comment) => {
       return <Comment comment={comment} currentUser={currentUser} />;
     });
   };
 
-  //   const AllComments = renderComments();
+  useEffect(async () => {
+    await doRequest();
+  });
 
   return (
     <>
-      <AddComment />
-      <Comment />
-      <Comment />
-      <Comment />
-      {/* AllComments */}
+      <AddComment
+        currentUser={currentUser}
+        malId={malId}
+        animeId={animeId}
+        comments={comments}
+        setComments={setComments}
+      />
+      <RenderComments />
     </>
   );
 };
