@@ -1,6 +1,6 @@
 import CommentListContainer from "../components/comment-list-container";
 
-export default () => {
+export default ({ currentUser }) => {
   return (
     <>
       <CommentListContainer />

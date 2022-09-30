@@ -34,7 +34,7 @@ router.post(
 
     console.log("The newly added comment is:\n", addedComment);
 
-    res.status(201).send("Comment Added Successfully!");
+    res.status(201).send({ addedComment });
   }
 );
 

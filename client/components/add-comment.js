@@ -1,8 +1,27 @@
 import React from "react";
 import styles from "../styles/comment.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import useRequest from "../hooks/use-request";
 
-const AddComment = ({ comment, currentUser }) => {
+const AddComment = ({ currentUser, malId, animeId, comments, setComments }) => {
+  const [content, setContent] = useState("");
+
+  const { doRequest, errors } = useRequest({
+    url: `/api/comments/add`,
+    method: "post",
+    body: {
+      animeId: animeId,
+      conent: content,
+      malId: malId,
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      let newComments = comments;
+      newComments.push(data);
+      setComments(newComments);
+    },
+  });
+
   return (
     <>
       <div class="app container py-4">
@@ -25,6 +44,8 @@ const AddComment = ({ comment, currentUser }) => {
                   <textarea
                     class={`${styles.formcontrol} w-100`}
                     placeholder="Leave a comment here"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
                     id="my-comment"
                   ></textarea>
                 </div>
